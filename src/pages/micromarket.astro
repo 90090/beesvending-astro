@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css'
+import { Apple, CreditCard, LayoutDashboard, PackageOpen } from "lucide-react";
+import Testimonials from '../components/Testimonials';
+---
+
+<Layout title="Micromarkets | Commercial Vending & Micro-Market Solutions for Workplaces | Bee's Vending" 
+description="Bee's Vending provides modern vending machines and micro-market solutions for offices, warehouses, and healthcare facilities. Free breakroom assessments available." 
+canonical="https://beesvending.com/micromarket">
+  <Fragment slot="head">
+        <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+            "@type": "LocalBusiness",
+            "@id": "https://beesvending.com/#business",
+            "name": "Bee's Vending",
+            "url": "https://beesvending.com",
+            "logo": "https://beesvending.com/logos/logo.webp",
+            "telephone": "(203) 574-2337",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "350 Chase River Rd",
+                "addressLocality": "Waterbury",
+                "addressRegion": "CT",
+                "postalCode": "06704",
+                "addressCountry": "US"
+            },
+            "areaServed": {
+                "@type": "AdministrativeArea",
+                "name": "Connecticut"
+            },
+            "description": "Bee's Vending provides commercial vending machines and micro-markets tailored to your business needs.",
+            "sameAs": [
+                "https://www.facebook.com/beesvendingct",
+                "https://www.instagram.com/beesvendingct"
+            ]
+            },
+        ]
+        }
+        </script>
+    </Fragment>  
+    <main>
+        <div class="bg-white text-gray-900">
+        <head>
+        <title> MicroMarket | Bee's Vending | Expert Vending Machines & Micro-Markets</title>
+        <meta name="description" content="Discover Bee's Vending Micro-Markets, the innovative solution for your workplace. Learn about our offerings and how we can enhance your break room experience." />
+        </head>
+        {/* Hero Section */}
+        <section class="max-w-7xl mx-auto px-6 py-16 flex flex-col lg:flex-row gap-12">
+            <div class="lg:w-1/2 flex flex-col justify-center">
+            <h1 class="text-4xl font-bold mb-6">Micro Markets</h1>
+            <p class="text-lg">
+                Transform your break room into a 24/7 self-serve mini store. Equipped with all your favorite snacks, beverages including pre-packaged fresh meal options. Our Micro-Markets are branded to your space and secured to create a safe and convenient transaction for all. 
+            </p>
+            </div>
+            <div class="lg:w-1/2 grid grid-cols-1 gap-4">
+            <h2 class="text-2xl font-semibold">Benefits</h2>
+            <p class="text-gray-700 mb-4">
+                Micro-markets improve employee satisfaction, support wellness goals, and make
+                your break room a true destination.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-start gap-3 bg-white rounded-md shadow-sm p-4 hover:scale-105 transition-smooth duration-300">
+                <Apple className="w-5 h-5 text-red-700 mt-1 flex-shrink-0" />
+                <p class="text-md text-black font-semibold">Hundreds of fresh, healthy, and popular items</p>
+                </div>
+                <div class="flex items-start gap-3 bg-white rounded-md shadow-sm p-4 hover:scale-105 transition-smooth duration-300">
+                <CreditCard className="w-5 h-5 text-red-700 mt-1 flex-shrink-0" />
+                <p class="text-md text-black font-semibold">Self-checkout kiosk for easy, cashless purchasing</p>
+                </div>
+
+                
+                <div class="flex items-start gap-3 bg-white rounded-md shadow-sm p-4 hover:scale-105 transition-smooth duration-300">
+                <PackageOpen className="w-5 h-5 text-red-700 mt-1 flex-shrink-0" />
+                <p class="text-md text-black font-semibold">Open design with shelves and coolers for more choice</p>
+                </div>
+                <div class="flex items-start gap-3 bg-white rounded-md shadow-sm p-4 hover:scale-105 transition-smooth duration-300">
+                <LayoutDashboard className="w-5 h-5 text-red-700 mt-1 flex-shrink-0" />
+                <p class="text-md text-black font-semibold">Customized fixtures and signage to fit your workplace</p>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        {/* Image Section */}
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Left (Portrait) */}
+            <img
+                src="/leftmarket.webp"
+                alt="Gallery Image 1"
+                class="w-full h-[450px] md:h-[600px] object-cover rounded-lg shadow-sm hover:scale-105 transition-transform duration-500"
+            />
+
+            {/* Middle (Landscape) */}
+            <img
+                src="/bees_2.webp"
+                alt="Gallery Image 2"
+                class="w-full h-[300px] md:h-[400px] object-cover rounded-lg shadow-sm md:mt-24 hover:scale-105 transition-transform duration-500"
+            />
+
+            {/* Right (Portrait) */}
+            <img
+                src="/rightmarket.webp"
+                alt="Gallery Image 3"
+                class="w-full h-[450px] md:h-[600px] object-cover rounded-lg shadow-sm hover:scale-105 transition-transform duration-500"
+            />
+            </div>
+        </section>
+        
+        {/* Testimonials Section */}
+        <Testimonials client:load/>
+        </div>
+    </main> 
+</Layout>

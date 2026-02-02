@@ -1,11 +1,182 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import '../styles/global.css'
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Home | Commercial Vending & Micro-Market Solutions for Workplaces | Bee's Vending" description="Bee's Vending provides modern vending machines and micro-market solutions for offices, warehouses, and healthcare facilities. Free breakroom assessments available." canonical="https://beesvending.com">
+  <Fragment slot="head">
+      <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+            "@type": "LocalBusiness",
+            "@id": "https://beesvending.com/#business",
+            "name": "Bee's Vending",
+            "url": "https://beesvending.com",
+            "logo": "https://beesvending.com/logos/logo.webp",
+            "telephone": "(203) 574-2337",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "350 Chase River Rd",
+                "addressLocality": "Waterbury",
+                "addressRegion": "CT",
+                "postalCode": "06704",
+                "addressCountry": "US"
+            },
+            "areaServed": {
+                "@type": "AdministrativeArea",
+                "name": "Connecticut"
+            },
+            "description": "Bee's Vending provides commercial vending machines and micro-markets tailored to your business needs.",
+            "sameAs": [
+                "https://www.facebook.com/beesvendingct",
+                "https://www.instagram.com/beesvendingct"
+            ]
+            },
+        ]
+        }
+      </script>
+  </Fragment>  
+  <main>
+	<!-- Hero Section -->
+	<section class="w-full flex justify-center py-12">
+      <div class="w-full max-w-6xl bg-gray-100 rounded-md shadow-sm p-8">
+        {/* Top Grid: Text + Image */}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-10">
+          {/* Left Content */}
+          <div>
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-900 mb-2">
+              Proudly Serving Connecticut
+            </h2>
+            <p class="text-gray-600 mb-6">
+              Bees Vending is your local, family-owned company with over 50 years of combined experience.
+            </p>
+            
+
+            {/* Buttons */}
+            <div class="flex flex-col md:flex-row gap-4">
+              <a
+                href="/vending"
+                class="bg-red-600 md:w-80 text-center hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium transition"
+              >
+                Explore Vending
+              </a>
+              <a
+                href="/contact"
+                class="bg-white border md:w-150 text-center border-gray-300 hover:bg-gray-100 text-red-600 px-6 py-3 rounded-md font-medium transition"
+              >
+                Book a Free Breakroom Assessment
+              </a>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div class="flex justify-center md:justify-end">
+            <img
+              src="/Bees_Food.webp"
+              alt="Bees Vending machines"
+              class="w-full md:w-4/5 rounded-md hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        </div>
+        <p class="text-black-600 mb-6">
+            We are your Modern Vending & Micro-Market Solution for your workplace. Providing hassle-free commercial vending machines and micro-markets tailored to you and designed to improve employee satisfaction, convenience, and productivity — at no cost to your business. Whether you're looking to upgrade outdated vending machines or create a full micro-market breakroom experience, our team handles everything from installation to restocking.
+        </p>
+
+        {/* Cards */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            {
+              title: "Vending Machines for Offices & Commercial Spaces",
+              desc: "Our reliable modern vending machines offer a wide variety of snacks and beverages including healthier options, with real-time inventory tracking and cashless payment systems. ",
+            },
+            {
+              title: "Micro-Markets for Employee Breakrooms",
+              desc: "Micro-markets create a self-service secured convenience store right inside your workplace. Employees enjoy more choice, fresh food options, and a better breakroom experience — without added work for employers.",
+            },
+            {
+              title: "Healthy Vending Options",
+              desc: "Support wellness initiatives with better-for-you snacks, drinks, and meal options that align with today’s workplace expectations to keep your team fueled.",
+            },
+          ].map((card, i) => (
+            <div
+              data-key={i}
+              class="bg-white rounded-md shadow-sm p-4 hover:scale-105 transition-transform duration-300">
+              <h3 class="font-semibold text-gray-900 mb-1">{card.title}</h3>
+              <p class="text-sm text-gray-600">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+	{/* Service Area Banner */}
+      <section class="w-full bg-red-600 text-white py-6">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+          <p class="text-base text-white md:text-lg font-medium leading-relaxed">
+            Our service area includes but is not limited to: Waterbury, Prospect, Cheshire, Naugatuck, Wolcott, Southington, East Hartford, Farmington, Hartford, Middletown, New Britain, Rocky Hill, Southington, West Hartford, Wethersfield and Windsor.
+          </p>
+        </div>
+      </section>
+
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+  {/* Custom Vending Layouts Section */}
+  <div class="bg-gray-150 rounded-lg overflow-hidden shadow-sm">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[250px]">
+      {/* Left side - Content */}
+      <div class="p-6 lg:p-10 flex flex-col justify-center">
+        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
+          Featuring Smart Cooler Technology
+        </h2>
+        <p class="text-gray-600 text-base leading-relaxed">
+          Revolutionize the way you access snacks and drinks! Our Smart Cooler allows customers to simply tap their 
+          card, grab what they want, and go, no lines, no waiting. Perfect for standalone use or in markets where 
+          traditional coolers face high shrinkage, it combines convenience, security, and seamless checkout 
+          technology in one sleek, modern unit.
+        </p>
+      </div>
+      {/* //All our vending machines come equipped with remote monitoring technology,
+          allowing us to track inventory levels, machine status, and sales data in real-time.
+          This ensures your machines are always stocked and functioning optimally.
+          Plus, our cashless payment options make transactions quick and easy for your employees. */}
+
+      {/* Right side - Image container */}
+      <div class=" flex items-center justify-center min-h-[200px]">
+          <img
+            src="/AICooler.webp"
+            alt="Vending machine with cashless payment"
+            class="rounded-lg object-contain h-96 w-auto"
+          />
+      </div>
+
+    </div>
+  </div>
+
+
+
+      {/* Micromarkets Section */}
+      <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm">
+        <div class="min-h-[200px]">
+          <div class="p-8 lg:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between">
+            <div>
+              <h2 class="text-2xl lg:text-3xl font-semibold text-gray-900 mb-4 lg:mb-2">
+                Micromarkets - fresh, self-serve solutions
+              </h2>
+              <p class="text-gray-600 text-base leading-relaxed">
+                Fresh food, self-checkout kiosks, and flexible shelving for workplaces
+                of all sizes. 
+              </p>
+            </div>
+            <div class="mt-6 lg:mt-0">
+              <a href="/micromarket" class="bg-red-600 hover:bg-red-700  text-white px-8 py-2 rounded-lg font-medium transition-colors duration-200 shadow-sm">
+                See Micromarkets
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+  	</div>
+  </main>
 </Layout>

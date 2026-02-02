@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css'
+import ContactForm from '../components/Contactform.jsx';
+import Faq from '../components/Faq.jsx';
+---
+
+<Layout title="Contact Us | Commercial Vending & Micro-Market Solutions for Workplaces | Bee's Vending" 
+description="Bee’s Vending provides modern vending machines and micro-market solutions for offices, warehouses, and healthcare facilities. Free breakroom assessments available." 
+canonical="https://beesvending.com/contact">
+  <Fragment slot="head">
+        <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+            "@type": "LocalBusiness",
+            "@id": "https://beesvending.com/#business",
+            "name": "Bee's Vending",
+            "url": "https://beesvending.com",
+            "logo": "https://beesvending.com/logos/logo.webp",
+            "telephone": "(203) 574-2337",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "350 Chase River Rd",
+                "addressLocality": "Waterbury",
+                "addressRegion": "CT",
+                "postalCode": "06704",
+                "addressCountry": "US"
+            },
+            "areaServed": {
+                "@type": "AdministrativeArea",
+                "name": "Connecticut"
+            },
+            "description": "Bee's Vending provides commercial vending machines and micro-markets tailored to your business needs.",
+            "sameAs": [
+                "https://www.facebook.com/beesvendingct",
+                "https://www.instagram.com/beesvendingct"
+            ]
+            },
+        ]
+        }
+        </script>
+    </Fragment>  
+
+    <main>
+        <div class="max-w-3xl mx-auto px-4 py-8 space-y-10">
+            <h2 class="text-3xl font-bold text-center text-gray-900">Get a Free Breakroom Assessment</h2>
+            <p class="text-xl font-semibold text-black text-center">Not sure whether vending machines or a micro-market is right for your workplace? Our team offers free breakroom assessments to evaluate your space and recommend the best solution.</p>
+            <ContactForm client:load/>
+            
+            <Faq client:load/>
+
+        </div>
+    </main> 
+</Layout>

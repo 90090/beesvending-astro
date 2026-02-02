@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css'
+---
+
+<Layout title="404 | Commercial Vending & Micro-Market Solutions for Workplaces | Bee's Vending" description="Bee’s Vending provides modern vending machines and micro-market solutions for offices, warehouses, and healthcare facilities. Free breakroom assessments available." canonical="https://beesvending.com/notfound">
+  <Fragment slot="head">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://beesvending.com/#business",
+          "name": "Bee's Vending",
+          "url": "https://beesvending.com",
+          "logo": "https://beesvending.com/logos/logo.webp",
+          "telephone": "(203) 574-2337",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "350 Chase River Rd",
+            "addressLocality": "Waterbury",
+            "addressRegion": "CT",
+            "postalCode": "06704",
+            "addressCountry": "US"
+          },
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "Connecticut"
+          },
+          "description": "Bee's Vending provides commercial vending machines and micro-markets tailored to your business needs.",
+          "sameAs": [
+            "https://www.facebook.com/beesvendingct",
+            "https://www.instagram.com/beesvendingct"
+          ]
+        },
+      ]
+    }
+    </script>
+  </Fragment>  
+  <main>
+    <div class="text-center p-10">
+        <h1 class="text-4xl font-bold">404 - Page Not Found</h1>
+        <p>The page you are looking for does not exist.</p>
+    </div>
+    </main>
+</Layout>

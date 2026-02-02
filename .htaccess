@@ -1,0 +1,30 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # --- 410 Gone for permanently removed pages ---
+  RewriteRule ^contact\.php$ - [G,L]
+  RewriteRule ^faq\.php$ - [G,L]
+  RewriteRule ^southington\.php$ - [G,L]
+  RewriteRule ^healthy\.php$ - [G,L]
+  RewriteRule ^beverages\.php$ - [G,L]
+  RewriteRule ^technology\.php$ - [G,L]
+  RewriteRule ^snacks\.php$ - [G,L]
+  RewriteRule ^coffee\.php$ - [G,L]
+  RewriteRule ^micro-markets\.php$ - [G,L]
+  RewriteRule ^services\.php$ - [G,L]
+  RewriteRule ^index\.php$ - [G,L]
+  RewriteRule ^waterbury\.php$ - [G,L]
+  RewriteRule ^why-us\.php$ - [G,L]
+  RewriteRule ^food\.php$ - [G,L]
+  RewriteRule ^vending\.php$ - [G,L]
+  RewriteRule ^about\.php$ - [G,L]
+
+  # --- Serve index.html for all SPA routes ---
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+
+  # --- Custom 404 page (for URLs that hit a real file that doesn’t exist, rarely used) ---
+  ErrorDocument 404 /404.html
+</IfModule>

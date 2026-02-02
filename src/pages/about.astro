@@ -1,0 +1,152 @@
+---
+import '../styles/global.css'
+import Layout from '../layouts/Layout.astro'
+import { ArrowRightCircle } from "lucide-react";
+---
+
+<Layout title="About | Commercial Vending & Micro-Market Solutions for Workplaces | Bee's Vending" description="Bee’s Vending provides modern vending machines and micro-market solutions for offices, warehouses, and healthcare facilities. Free breakroom assessments available." canonical="https://beesvending.com/about">
+  <Fragment slot="head">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://beesvending.com/#business",
+          "name": "Bee's Vending",
+          "url": "https://beesvending.com",
+          "logo": "https://beesvending.com/logos/logo.webp",
+          "telephone": "(203) 574-2337",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "350 Chase River Rd",
+            "addressLocality": "Waterbury",
+            "addressRegion": "CT",
+            "postalCode": "06704",
+            "addressCountry": "US"
+          },
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "Connecticut"
+          },
+          "description": "Bee's Vending provides commercial vending machines and micro-markets tailored to your business needs.",
+          "sameAs": [
+            "https://www.facebook.com/beesvending",
+            "https://www.instagram.com/beesvendingct"
+          ]
+        },
+      ]
+    }
+    </script>
+  </Fragment>  
+  <main class = "bg-white text-gray-900">
+    {/* About Us Section */}
+      <section class="max-w-5xl mx-auto px-6 py-16 text-center">
+        <h1 class="text-4xl font-bold mb-6">About Us</h1>
+        
+
+        {/* Images + Text */}
+        <div class=" gap-8 items-center">
+          {/* Text Content */}
+          <div class="text-left md:text-center">
+            <h2 class="text-2xl font-semibold mb-4">
+              Serving Companies Across Connecticut
+            </h2>
+            <p class="text-lg mb-4">
+              Bees Vending is a family-owned business specializing in vending machines and micro-markets. Customer service is our priority, we work with you to customize your workplace refreshment solution to fit your needs including technology, enhanced service, and 24/7 customer help line complete the package to produce unbeatable workplace refreshment services.
+            </p>
+            <p class="text-lg font-semibold">
+              Our mission: deliver customized snack and refreshment solutions
+              that make workplaces more productive, collaborative, and enjoyable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: Industries Served */}
+      <div class="max-w-3xl mx-auto mb-10 p-4">
+        <p class="text-lg text-black mb-6">
+          We proudly serve a wide range of industries across Connecticut, delivering
+          reliable vending and micro-market solutions tailored to each workplace.
+        </p>
+
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+          <li class="flex items-center gap-3 bg-gray-50 border rounded-lg p-4">
+            <span class="w-2 h-2 bg-red-700 rounded-full"></span>
+            <span class="font-medium">Corporate offices</span>
+          </li>
+          <li class="flex items-center gap-3 bg-gray-50 border rounded-lg p-4">
+            <span class="w-2 h-2 bg-red-700 rounded-full"></span>
+            <span class="font-medium">Manufacturing & warehouses</span>
+          </li>
+          <li class="flex items-center gap-3 bg-gray-50 border rounded-lg p-4">
+            <span class="w-2 h-2 bg-red-700 rounded-full"></span>
+            <span class="font-medium">Healthcare facilities</span>
+          </li>
+          <li class="flex items-center gap-3 bg-gray-50 border rounded-lg p-4">
+            <span class="w-2 h-2 bg-red-700 rounded-full"></span>
+            <span class="font-medium">Distribution centers</span>
+          </li>
+          <li class="flex items-center gap-3 bg-gray-50 border rounded-lg p-4 sm:col-span-2">
+            <span class="w-2 h-2 bg-red-700 rounded-full"></span>
+            <span class="font-medium">Schools & educational institutions</span>
+          </li>
+        </ul>
+
+        <p class="mt-6 text-lg font-semibold text-center text-gray-900">
+          Bee's Vending designs breakroom solutions that fit your space, workforce,
+          and business goals.
+        </p>
+      </div>
+
+      <section class="relative w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center max-w-6xl mx-auto">
+            {/* Left Image */}
+            <div class="flex justify-center items-center p-4 md:p-6">
+            <img
+                src="/Bees_Food2.webp"
+                alt="Bees Vending team at work"
+                class="max-w-xs sm:max-w-sm md:max-w-md h-auto object-cover rounded-md"
+            />
+            </div>
+
+            {/* Right Content */}
+            <div class="flex items-center bg-white/90 p-6 md:p-10">
+            <div class="space-y-6 max-w-md mx-auto text-center">
+                <h2 class="text-2xl  md:text-3xl font-bold">Why Companies Choose Bee's Vending</h2>
+                <p class="text-lg">
+                From experience to the latest technology innovations, we strive to
+                offer our customers the best level of service.
+                </p>
+
+                {/* Icon List */}
+                <div class="space-y-3">
+                {[
+                    "Local, personalized service with reliable, fully managed vending and micro-market services",
+                    "Healthy snack and beverage options employees actually want",
+                    "Touchless payment technology for convenience and speed",
+                    "Zero inventory management for your team with fast response and 24/7 customer support",
+                    "Ideal for offices, warehouses, healthcare facilities, and large workplaces",
+                ].map((item, idx) => (
+                    <div class="flex items-start gap-3 bg-white border rounded-md shadow-sm p-4 hover:scale-105 transition duration-300">
+                    <ArrowRightCircle className="w-5 h-5 text-red-700 mt-1 flex-shrink-0" />
+                    <p class="text-base font-semibold">{item}</p>
+                    </div>
+                ))}
+                </div>
+
+                {/* CTA Button */}
+                <div class="pt-4">
+                <a
+                    href="/contact"
+                    class="inline-block bg-red-700 text-white px-6 py-3 rounded-full uppercase font-semibold shadow hover:bg-red-800 transition"
+                >
+                    Book a Free Breakroom Assessment
+                </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+  </main>
+
