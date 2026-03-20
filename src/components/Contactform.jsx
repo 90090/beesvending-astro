@@ -15,9 +15,6 @@ export default function ContactForm() {
   const [success, setSuccess] = useState(null);
   const [hoverField, setHoverField] = useState(null); // Track which textarea is hovered/focused
 
-  const API_URL = "https://4h9g5itj39.execute-api.us-east-1.amazonaws.com/contact";
-  const API_KEY = "ASkyaH4bTFY3KQvHkBOvl1SmY23cpMGq";
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -28,11 +25,10 @@ export default function ContactForm() {
     setSuccess(null);
 
     try {
-      const res = await fetch(API_URL, {
+      const res = await fetch("/contact-proxy.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": API_KEY,
         },
         body: JSON.stringify(form),
       });
