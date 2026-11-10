@@ -1,7 +1,23 @@
- ---
+---
 import NavClient from '../components/Navclient.jsx';
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
-const { title = "My Site", description = "", canonical = "" } = Astro.props;
+import SEO from '../components/SEO.astro';
+import SiteHealthBeacon from '../components/Sitehealthbeacon.astro';
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+	type?: 'website' | 'LocalBusiness';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = 'Discover the best vending solutions for your workplace with Bees Vending.',
+  image,
+  type,
+  noindex,
+} = Astro.props;
 
 const links = [
   { name: "Home", href: "/" },
@@ -18,6 +34,13 @@ const links = [
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		  <SEO
+			title={title}
+			description={description}
+			image={image}
+			type={type}
+			noindex={noindex}
+		/>
 		<meta charset="UTF-8" />
 		<title>{title}</title>
 		<!-- Google tag (gtag.js) --> 
@@ -28,7 +51,6 @@ const links = [
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../styles/global.css" />
-		<link rel="canonical" href={canonical} />
 		<slot name="head" />
 
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -53,169 +75,9 @@ const links = [
 		<meta name="twitter:title" content="Bees Vending | Expert Vending Machines & Micro-Markets" />
 		<meta name="twitter:description" content="High-quality vending solutions for your workplace." />
 		<meta name="twitter:image" content="https://beesvending.com/og-image.png" />
-		<script type="application/ld+json">
-		{
-		"@context": "https://schema.org",
-		"@graph": [
-			{
-			"@type": "LocalBusiness",
-			"@id": "https://beesvending.com/#localbusiness",
-			"name": "Bees Vending",
-			"image": "https://beesvending.com/logos/logo.webp",
-			"url": "https://beesvending.com",
-			"telephone": "+1-203-574-2337",
-			"description": "Bees Vending specializes in providing modern vending machines and micro-markets for workplaces across Connecticut.",
-			"address": {
-				"@type": "PostalAddress",
-				"streetAddress": "350 Chase River Road",
-				"addressLocality": "Waterbury",
-				"addressRegion": "CT",
-				"postalCode": "06712",
-				"addressCountry": "US"
-			},
-			"geo": {
-				"@type": "GeoCoordinates",
-				"latitude": "41.5809",
-				"longitude": "-73.0431"
-			},
-			"openingHoursSpecification": [
-				{
-				"@type": "OpeningHoursSpecification",
-				"dayOfWeek": [
-					"Monday",
-					"Tuesday",
-					"Wednesday",
-					"Thursday",
-					"Friday"
-				],
-				"opens": "09:00",
-				"closes": "17:00"
-				}
-			],
-			"sameAs": [
-				"https://www.facebook.com/beesvendingct/",
-				"https://www.instagram.com/beesvendingct/"
-			]
-			},
-			{
-			"@type": "BreadcrumbList",
-			"@id": "https://beesvending.com/#breadcrumb",
-			"itemListElement": [
-				{
-				"@type": "ListItem",
-				"position": 1,
-				"name": "Home",
-				"item": "https://beesvending.com/"
-				},
-				{
-				"@type": "ListItem",
-				"position": 2,
-				"name": "About",
-				"item": "https://beesvending.com/about"
-				},
-				{
-				"@type": "ListItem",
-				"position": 3,
-				"name": "Contact",
-				"item": "https://beesvending.com/contact"
-				},
-				{
-				"@type": "ListItem",
-				"position": 4,
-				"name": "Micro-Markets",
-				"item": "https://beesvending.com/micromarket"
-				},
-				{
-				"@type": "ListItem",
-				"position": 5,
-				"name": "Vending",
-				"item": "https://beesvending.com/vending"
-				}
-			]
-			},
-			{
-			"@type": "FAQPage",
-			"@id": "https://beesvending.com/contact",
-			"mainEntity": [
-				{
-				"@type": "Question",
-				"name": "Is there a cost to my company for the vending equipment/service?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Bee's Vending will provide the machines and service free of charge."
-				}
-				},
-				{
-				"@type": "Question",
-				"name": "How often are machines restocked?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "As often as needed based on sales frequency."
-				}
-				},
-				{
-				"@type": "Question",
-				"name": "What condition are the vending machines in?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "The machines coming in will be new or near new. The machines will be in excellent condition and uniform in design."
-				}
-				},
-				{
-				"@type": "Question",
-				"name": "What is the procedure if someone loses money in the machines?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Vending machines from time to time do take people's money. We can supply a refund bank for on-the-spot refunds. Our route drivers will also issue refunds."
-				}
-				},
-				{
-				"@type": "Question",
-				"name": "If a machine has a problem how quickly do you respond to fix it?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Once a problem has been brought to our attention we generally respond quickly to resolve any problems. Keeping our customers happy and our vending machines stocked and functioning properly is our #1 priority."
-				}
-				},
-				{
-				"@type": "Question",
-				"name": "Can we request specific products?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Of course! you can either request a specific product through our website or talk to your account representative. We want to offer the products your employees want."
-				}
-				},
-				{
-				"@type": "Question",
-				"name": "Is there a contract?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "No contract required, however if you need a contract we will provide a mutually agreed upon format."
-				}
-				},
-				{
-				"@type": "Question",
-				"name": "How long does it take for delivery/installation and what is the process?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Once you give us the go ahead to move machines in we will be ready to go. In the event that you already have a vendor we can facilitate the change over to meet your convenience to move out. If you need the machines sooner than that we will make it happen. After we agree on an installation date, it shouldn't take more than 4 hours to move the machines in and get them all set up and working."
-				}
-				},
-				{
-				"@type": "Question",
-				"name": "What are your service days and hours?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "We provide service 24 hours a day 7 days a week. Our trucks start very early in the morning every day and we have route technicians on call around the clock. The people who re-stock your vending machines are also trained in repairing them. This helps facilitate most machine repairs and ensures that your vending machines are always up and running."
-				}
-				}
-			]
-			}
-		]
-		}
-		</script>
   	</head>
 	<body class="bg-white">
+	<SiteHealthBeacon siteId="beesvending" />
     <!-- Navbar  -->
     <header class="sr-only">
       <nav class="">

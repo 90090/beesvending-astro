@@ -61,6 +61,7 @@ export default function ContactForm() {
       <form
         onSubmit={handleSubmit}
         className="mx-auto max-w-6xl grid gap-4 md:grid-cols-2"
+        id="contact-form"
       >
         {/* Row 1 */}
         <div className="flex flex-col">

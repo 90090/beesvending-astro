@@ -1,0 +1,71 @@
+---
+interface Props {
+  siteId: string;
+  endpoint?: string;
+}
+const {
+  siteId,
+  endpoint = "https://2s1b76kije.execute-api.us-east-1.amazonaws.com/collect",
+} = Astro.props;
+---
+<site-health data-site={siteId} data-endpoint={endpoint} hidden></site-health>
+
+<script>
+  import { onCLS, onINP, onLCP, onFCP, onTTFB, type Metric } from "web-vitals";
+
+  const el = document.querySelector("site-health") as HTMLElement | null;
+
+  if (el && !navigator.webdriver && !location.hostname.includes("localhost")) {
+    const s = el.dataset.site!;
+    const endpoint = el.dataset.endpoint!;
+
+    const send = (data: Record<string, unknown>) => {
+      const body = JSON.stringify({ s, p: location.pathname, ...data });
+      // text/plain beacon = no CORS preflight
+      if (!navigator.sendBeacon?.(endpoint, body)) {
+        fetch(endpoint, { method: "POST", body, keepalive: true, mode: "no-cors" });
+      }
+    };
+
+    const utm = () => {
+      const q = new URLSearchParams(location.search);
+      const parts = ["utm_source", "utm_medium", "utm_campaign"].map(k => q.get(k)).filter(Boolean);
+      return parts.length ? parts.join("|") : undefined;
+    };
+
+    // Pageviews (works with or without Astro view transitions)
+    let last = "";
+    const pageview = () => {
+      if (location.pathname === last) return;
+      last = location.pathname;
+      send({ t: "pv", r: document.referrer || undefined, u: utm() });
+    };
+    pageview();
+    document.addEventListener("astro:page-load", pageview);
+
+    // Real-user Core Web Vitals (CLS stored x1000 as an integer)
+    const vital = (m: Metric) =>
+      send({ t: "wv", n: m.name, v: Math.round(m.name === "CLS" ? m.value * 1000 : m.value), rt: m.rating });
+    onCLS(vital);
+    onINP(vital);
+    onLCP(vital);
+    onFCP(vital);
+    onTTFB(vital);
+
+    // Conversions: calls, emails, outbound links
+    document.addEventListener("click", e => {
+      const a = (e.target as Element).closest?.("a");
+      if (!a) return;
+      const href = a.getAttribute("href") ?? "";
+      if (href.startsWith("tel:")) send({ t: "call" });
+      else if (href.startsWith("mailto:")) send({ t: "email" });
+      else if (a.host && a.host !== location.host) send({ t: "out", n: a.host });
+    }, { capture: true });
+
+    // Form submissions (fires after browser validation passes)
+    document.addEventListener("submit", e => {
+      const f = e.target as HTMLFormElement;
+      send({ t: "form", n: f.id || f.getAttribute("name") || "form" });
+    }, { capture: true });
+  }
+</script>

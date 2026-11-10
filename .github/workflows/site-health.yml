@@ -1,0 +1,44 @@
+name: site-health
+on:
+  push:
+    branches: [master]
+  schedule:
+    - cron: "0 12 * * 1" # weekly, catches new CVEs even without deploys
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      - name: Dependency audit
+        run: |
+          npm audit --json > audit.json || true
+          npx --yes npm-check-updates --jsonUpgraded > outdated.json || echo '{}' > outdated.json
+
+      - name: Lighthouse CI
+        run: npx --yes @lhci/cli autorun --collect.staticDistDir=./dist --collect.numberOfRuns=1 --upload.target=filesystem --upload.outputDir=./lhci || true
+
+      - name: Report to Site Health
+        env:
+          SITE_ID: beesvending
+          SITE_HEALTH_URL: https://2s1b76kije.execute-api.us-east-1.amazonaws.com
+          SITE_HEALTH_TOKEN: ${{ secrets.SITE_HEALTH_TOKEN }}
+        run: |
+          [ -f lhci/manifest.json ] || echo '[]' > lhci/manifest.json
+          jq -n \
+            --arg site "$SITE_ID" --arg sha "$GITHUB_SHA" \
+            --slurpfile a audit.json --slurpfile o outdated.json --slurpfile l lhci/manifest.json \
+            '{site:$site, sha:$sha,
+              vulns:($a[0].metadata.vulnerabilities // {}),
+              outdated:($o[0] | keys),
+              lighthouse:[$l[0][] | select(.isRepresentativeRun) | {url, summary}]}' > payload.json
+          curl -sf -X POST "$SITE_HEALTH_URL/ingest/build" \
+            -H "Authorization: Bearer $SITE_HEALTH_TOKEN" \
+            -H "Content-Type: application/json" --data @payload.json
